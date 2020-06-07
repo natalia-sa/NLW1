@@ -1,6 +1,9 @@
 const express = require("express");
-
+// esse require é sinal de que ha um module.exports
 const server = express();
+
+//pegar o banco de dados
+const db = require("./database/db.js");
 
 // configurar pasta publica (use)
 
@@ -29,7 +32,18 @@ server.get("/create-point", (req, res) => {
 })
 
 server.get("/search", (req, res) => {
-    return res.render("search-results.html");
+    //pegar os dados do banco
+    //consultar dados na tabela
+    db.all(`SELECT * FROM places`, function(err, rows) {
+        if(err) {
+            return console.log(err);
+        }  
+        console.log("aqui estao seus registros");
+        console.log(rows);
+        // mostrar a pagina html com os dados do banco
+        return res.render("search-results.html", { places: rows});
+    })
+    
 })
 
 
