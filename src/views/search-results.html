@@ -11,45 +11,43 @@
 {% endblock styles %}
 
 
-
-    
-
 {% block content%}
     {% include "partials/page-header.html" %}
 
     <main>
-        <h4>
-            <strong>2 pontos</strong> encontrados
-        </h4>
+
+        {% if total > 0 %}
+            <h4>
+                <strong> {{ total }} pontos</strong> encontrados
+            </h4>
+        
+
 
         <div class="cards">
             
             {% for place in places %}
                 <div class="card">
-                    <img src="{{ place }}" alt="colectoria">
-                    <h1>Colectoria</h1>
-                    <h3>Resíduos eletrônicos, lâmpadas</h3>
+                    <img src="{{ place.image }}" alt="{{ place.nome }}">
+                    <h1>{{ place.nome }}</h1>
+                    <h3>{{ place.items }}</h3>
                     <p>
-                        Rio do sul, santa catarina <br> 
-                        guilherme gemballa, jardim america <br>
-                        nº 260
+                            {{ place.city }}, {{ place.state }} <br> 
+                            {{ place.address }} <br>
+                            {{ place.address2 }}
                     </p>
         
                 </div>
             {% endfor %}
 
 
-
-
         </div>
+        {% else %}
+            <h4><strong>nenhum</strong> local encontrado</h4>
+        {% endif %}
     </main>
 
     </div>
 
 {% endblock content%}
-
-
-
-
 
 

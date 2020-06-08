@@ -6,27 +6,29 @@
 function populateUfs() {
     const ufSelect = document.querySelector("select[name=uf]");
 
-    fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados").then((res) => {
-        return res.json().then( states => {
+    fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados").then( res =>  res.json())
+    .then( states => {
 
-            for( state of states ) {
+            for( const state of states ) {
                 ufSelect.innerHTML += `<option value ="${state.id}">${state.nome} </option>`
             }
             
         })
-    })
+    
 }
 
 populateUfs();
 
 function getCities(event) {
-    const citySelect = document.querySelector("select[name=city]");
-    const stateInput = document.querySelector("input[name=state]");
+    const citySelect = document.querySelector("[name=city]");
+    const stateInput = document.querySelector("[name=state]");
 
     // target é uma das informações do evento (onde foi executado)
     const ufValue = event.target.value;
-
+    
+    
     const indexOfSelectedState = event.target.selectedIndex;
+    
     stateInput.value = event.target.options[indexOfSelectedState].text;
 
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
@@ -35,11 +37,14 @@ function getCities(event) {
     citySelect.disabled = true;
 
     fetch(url).then((res) => {
+    
         return res.json().then( cities => {
             
             
             for( city of cities ) {
-                citySelect.innerHTML += `<option value ="${city.nome}">${city.nome} </option>`
+                citySelect.innerHTML += `<option value ="${city.nome}">${city.nome} </option>`;
+                
+
             }
             citySelect.disabled = false;
             
@@ -48,9 +53,11 @@ function getCities(event) {
 
 }
 
-document.querySelector("select[name=uf]");
+document
+.querySelector("select[name=uf]")
+.addEventListener("change",getCities);
 // passando getCities por referencia para que ela nao seja chamada automaticamente
-document.addEventListener("change",getCities);
+
 
 // itens de coleta
 
@@ -67,11 +74,12 @@ const collectedItems = document.querySelector("input[name=items]");
 
 let selectedItems = [];
 
-function handleSelectedItem(evento) {
+function handleSelectedItem(event) {
     const itemLi = event.target
     // adicionar ou remover uma classe com javascript
     itemLi.classList.toggle("selected");
-    const itemId = event.target.dataset.id;
+    const itemId = itemLi.dataset.id;
+    
     
     // verificar se existem itens selecionados e quais itens
     const alredySelected = selectedItems.findIndex( item => {
@@ -88,6 +96,7 @@ function handleSelectedItem(evento) {
     } else {
         selectedItems.push(itemId);
     }
+    
     
     collectedItems.value = selectedItems;
 
