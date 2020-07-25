@@ -1,4 +1,4 @@
-# Ecoleta-js
+# :recycle: Ecoleta-js
 - Next Level Week 1 - feito com Node.js, html e css
 
 # Sobre
