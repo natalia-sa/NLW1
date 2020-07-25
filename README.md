@@ -5,5 +5,5 @@ Aplicação que permite o cadastro de pontos de coleta e a busca pelos pontos ja
 # npm start
 - para inicializar o projeto
 
-#Localhost:3000
+# Localhost:3000
 - Acesse o endereço localhost:3000 para vê-lo em execução
