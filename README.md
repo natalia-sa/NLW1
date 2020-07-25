@@ -1,6 +1,8 @@
 # Ecoleta-js
-Next Level Week 1 - feito com Node.js, html e css
-Aplicação que permite o cadastro de pontos de coleta e a busca pelos pontos ja cadastrados.
+- Next Level Week 1 - feito com Node.js, html e css
+
+# Sobre
+- Aplicação que permite o cadastro de pontos de coleta de resíduos e a busca pelos pontos ja cadastrados.
 
 # Execução
 -  npm start (para inicializar o projeto)
